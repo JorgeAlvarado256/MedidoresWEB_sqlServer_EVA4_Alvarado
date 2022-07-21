@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MedidoresDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Lectura">
+          <Key>
+            <PropertyRef Name="id_lectura" />
+          </Key>
+          <Property Name="id_lectura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numero_serie" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="fecha_lectura" Type="date" />
+          <Property Name="hora_lectura" Type="time" Precision="7" />
+          <Property Name="valor_consumo" Type="int" />
+        </EntityType>
+        <EntityType Name="Medidor">
+          <Key>
+            <PropertyRef Name="id_medidor" />
+          </Key>
+          <Property Name="id_medidor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+          <Property Name="numero_serie" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="tipo_medidor" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rut" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="contrasenia" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MedidoresDBModelStoreContainer">
+          <EntitySet Name="Lectura" EntityType="Self.Lectura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medidor" EntityType="Self.Medidor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MedidoresDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Lectura">
+          <Key>
+            <PropertyRef Name="id_lectura" />
+          </Key>
+          <Property Name="id_lectura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numero_serie" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_lectura" Type="DateTime" Precision="0" />
+          <Property Name="hora_lectura" Type="Time" Precision="7" />
+          <Property Name="valor_consumo" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Medidor">
+          <Key>
+            <PropertyRef Name="id_medidor" />
+          </Key>
+          <Property Name="id_medidor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="numero_serie" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo_medidor" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rut" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contrasenia" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MedidoresDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Lecturas" EntityType="Self.Lectura" />
+          <EntitySet Name="Medidors" EntityType="Self.Medidor" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MedidoresDBModelStoreContainer" CdmEntityContainer="MedidoresDBEntities">
+          <EntitySetMapping Name="Lecturas">
+            <EntityTypeMapping TypeName="MedidoresDBModel.Lectura">
+              <MappingFragment StoreEntitySet="Lectura">
+                <ScalarProperty Name="id_lectura" ColumnName="id_lectura" />
+                <ScalarProperty Name="numero_serie" ColumnName="numero_serie" />
+                <ScalarProperty Name="fecha_lectura" ColumnName="fecha_lectura" />
+                <ScalarProperty Name="hora_lectura" ColumnName="hora_lectura" />
+                <ScalarProperty Name="valor_consumo" ColumnName="valor_consumo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medidors">
+            <EntityTypeMapping TypeName="MedidoresDBModel.Medidor">
+              <MappingFragment StoreEntitySet="Medidor">
+                <ScalarProperty Name="id_medidor" ColumnName="id_medidor" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="numero_serie" ColumnName="numero_serie" />
+                <ScalarProperty Name="tipo_medidor" ColumnName="tipo_medidor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="MedidoresDBModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="rut" ColumnName="rut" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
